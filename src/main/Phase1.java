@@ -1,4 +1,4 @@
-package brickbreaker;
+package main;
 
 public class Phase1 implements Phase {
     @Override

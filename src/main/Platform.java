@@ -1,4 +1,4 @@
-package brickbreaker;
+package main;
 
 public class Platform {
     private static final int DEFAULT_LIVES = 3;

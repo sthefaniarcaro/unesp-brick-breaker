@@ -1,4 +1,4 @@
-package brickbreaker;
+package main;
 
 import java.awt.*;
 

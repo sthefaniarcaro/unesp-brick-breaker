@@ -1,4 +1,4 @@
-package brickbreaker;
+package main;
 
 public class Ball {
     private int x;
