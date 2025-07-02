@@ -1,6 +1,7 @@
 package main;
 
 public class Ball {
+
     private int x;
     private int y;
     private int diameter;
@@ -51,5 +52,9 @@ public class Ball {
 
     public int getDy() {
         return dy;
+    }
+
+    public void setDx(int dx) {
+        this.dx = dx;
     }
 }

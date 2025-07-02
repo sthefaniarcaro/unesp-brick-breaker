@@ -1,6 +1,7 @@
 package main;
 
 public class Platform {
+
     private static final int DEFAULT_LIVES = 3;
     private static final int DEFAULT_SCORE = 0;
 
@@ -18,6 +19,14 @@ public class Platform {
         this.height = height;
         this.lives = DEFAULT_LIVES;
         this.score = DEFAULT_SCORE;
+    }
+
+    public void removeScore(int points) {
+        score -= points;
+
+        if (score < 0) {
+            score = 0;
+        }
     }
 
     public void setX(int newX, int panelWidth) {
@@ -59,8 +68,9 @@ public class Platform {
     }
 
     public void loseLife() {
-        if (lives > 0)
+        if (lives > 0) {
             lives--;
+        }
     }
 
     public void gainLife() {

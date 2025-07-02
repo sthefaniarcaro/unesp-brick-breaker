@@ -3,11 +3,15 @@ package main;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class BrickManager {
-    private List<Brick> bricks = new ArrayList<>();
+
+    private final List<Brick> bricks = new ArrayList<>();
 
     public BrickManager(int rows, int cols, int panelWidth) {
+        Random rand = new Random(); // Crie uma instância do Random
+
         int brickWidth = 60;
         int brickHeight = 25;
         int spacing = 10;
@@ -19,7 +23,14 @@ public class BrickManager {
             for (int col = 0; col < cols; col++) {
                 int x = startX + col * (brickWidth + spacing);
                 int y = startY + row * (brickHeight + spacing);
-                bricks.add(new Brick(x, y, brickWidth, brickHeight));
+
+                if (rand.nextInt(100) < 25) { // 25% de chance de ser um tijolo forte
+                    // Tijolo forte (vida 2)
+                    bricks.add(new Brick(x, y, brickWidth, brickHeight, 2, new Color(128, 0, 128)));
+                } else {
+                    // Tijolo normal (vida 1)
+                    bricks.add(new Brick(x, y, brickWidth, brickHeight, 1, new Color(148, 0, 211)));
+                }
             }
         }
     }
@@ -33,7 +44,6 @@ public class BrickManager {
     public Brick checkCollision(Rectangle ballRect) {
         for (Brick brick : bricks) {
             if (!brick.isDestroyed() && brick.getBounds().intersects(ballRect)) {
-                brick.setDestroyed(true);
                 return brick;
             }
         }
@@ -42,8 +52,9 @@ public class BrickManager {
 
     public boolean allDestroyed() {
         for (Brick brick : bricks) {
-            if (!brick.isDestroyed())
+            if (!brick.isDestroyed()) {
                 return false;
+            }
         }
         return true;
     }
